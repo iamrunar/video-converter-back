@@ -21,4 +21,4 @@ jobs:
               env:
                 DIR_NUGET: '.nuget'
                 DIR_SRC: src
-                DIR_PUBLISH: publish
+                DIR_PUBLISH: published
