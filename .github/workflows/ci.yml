@@ -9,6 +9,7 @@ on:
         branches: [master']
 
 env:
+    # https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry
     REGISTRY: ghcr.io
     IMAGE_NAME: ${{ github.repository }}
 
@@ -18,7 +19,7 @@ jobs:
         permissions:
           contents: read
           packages: write
-          
+
         # Configuring builder 
         # https://docs.docker.com/build/ci/github-actions/configure-builder/
         # https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-ghcrio
