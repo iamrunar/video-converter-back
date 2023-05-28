@@ -6,19 +6,32 @@ on:
         branches: ['develop', 'master', 'feature/deploy_setup']
     pull_request: 
         branches: ['develop']
-        
+
+env:
+    REGISTRY: ghcr.io
+    IMAGE_NAME: ${{ github.repository }}
+
 jobs:
     build:
         runs-on: ubuntu-latest
+        # Configuring builder 
+        # https://docs.docker.com/build/ci/github-actions/configure-builder/
         steps:
             - name: Checkout
               uses: actions/checkout@v3
-
 
             - name: Set up Docker Buildx
               uses: docker/setup-buildx-action@v2
               with:
                 buildkitd-flags: --debug
+
+            # https://github.com/docker/login-action#github-container-registry
+            - name: Login into registry ${{ env.REGISTRY }}
+              uses: docker/loging-action@v2
+              with:
+                registry: ${{ env.REGISTRY }}
+                username: ${{ github.actor }}
+                password: ${{ secrets.GITHUB_TOKEN }}
             
             - name: Build
               uses: docker/build-push-action@v4
