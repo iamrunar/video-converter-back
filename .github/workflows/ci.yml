@@ -27,7 +27,7 @@ jobs:
 
             # https://github.com/docker/login-action#github-container-registry
             - name: Login into registry ${{ env.REGISTRY }}
-              uses: docker/loging-action@v2
+              uses: docker/login-action@v2
               with:
                 registry: ${{ env.REGISTRY }}
                 username: ${{ github.actor }}
